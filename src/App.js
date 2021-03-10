@@ -43,6 +43,7 @@ const sounds = [
 
 const App = (props) => (
   <div class="display" id="display">
+    <h1>X is playing </h1>
           {sounds.map((sound, index) => (
             <DrumPad text={sound.key} key={index} audio={sound.mp3}/>
           ))}
@@ -52,24 +53,31 @@ const App = (props) => (
 // we have a box with some text in it coming from the props
 //converted to class based component to have state on it 
 class DrumPad extends React.Component {
+  state = {
+    currentID: ''
+  }
   constructor(props) {
     super(props);
-
     this.audio = React.createRef();
     }
 
   componentDidMount() {
     this.audio.current.addEventListener('ended', (e) => {
-      const parent = this.audio.current.parentNode;
+      const parent = e.target.parentNode;
       parent.classList.remove('active');
     }) 
   }
 
   playSound = () => {
-    this.audio.current.play()
+    this.audio.current.play();
+    
+    const id = this.audio.current.id;
 
     const parent = this.audio.current.parentNode;
     parent.classList.add('active');
+
+    const display = parent.parent; //the parent here is the drum-pad which is inside the display
+    display.querySelector('h1').innerText = id;
   }
 
   

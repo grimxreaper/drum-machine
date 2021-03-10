@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
 const sounds = [
@@ -41,8 +41,6 @@ const sounds = [
   },
 ]
 
-const keys = ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'];
-
 const App = (props) => (
   <div class="display" id="display">
           {sounds.map((sound, index) => (
@@ -62,11 +60,18 @@ class Box extends React.Component {
   playSound = () => {
     this.audio.current.play()
   }
+
+  // handleKeydown = (event) => {
+  //   if (event.key === this.props.text) {
+  //     this.audio.current.play()
+  //   }
+  // }
+
   
   render() {
     const { text, audio } = this.props; 
     return(
-        <div className="box" onClick={this.playSound}>
+        <div className="box" onClick={this.playSound} >
           {text}
           <audio ref={this.audio} src={audio} class="clip" id={text} />
         </div>

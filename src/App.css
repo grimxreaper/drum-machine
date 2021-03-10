@@ -20,6 +20,9 @@ body {
     width: 400px;
     padding: 20px;
     background-color: aliceblue;
+    background-color: #fff;
+    
+   
 }
 
 .box {
@@ -30,6 +33,7 @@ body {
     margin: 10px;
     font-size: 50px;
     justify-content: center;
+    
 
 }
 

@@ -17,7 +17,8 @@ body {
 .display {
     display: flex;
     flex-wrap: wrap;
-    width: 360px;
+    width: 400px;
+    padding: 20px;
     background-color: aliceblue;
 }
 
@@ -27,5 +28,11 @@ body {
     height: 100px;
     width: 100px;
     margin: 10px;
+    font-size: 50px;
+    justify-content: center;
 
+}
+
+.box.active {
+    opacity: 0.8;
 }

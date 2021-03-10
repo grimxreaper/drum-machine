@@ -11,14 +11,14 @@ class App extends Component {
   render() {
     const { keys } = this.state;
     return (
-      <div id="drum-machine">
-        <div id="display">
+      
+        <div id="display" class="display">
           {keys.map((key, index) => (
             <Box text={key} key={index}/>
           ))}
           
         </div>
-      </div>
+      
 
     );
   }
@@ -33,4 +33,4 @@ const Box = () => (
 
 
 export default App;
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('drum-machine'));

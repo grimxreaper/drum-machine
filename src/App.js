@@ -54,18 +54,23 @@ const App = (props) => (
 class Box extends React.Component {
   constructor(props) {
     super(props);
+
     this.audio = React.createRef();
     }
 
-  playSound = () => {
-    this.audio.current.play()
+  componentDidMount() {
+    this.audio.current.addEventListener('ended', () => {
+      const parent = this.audio.current.parentNode;
+      parent.classList.remove('active');
+    }) 
   }
 
-  // handleKeydown = (event) => {
-  //   if (event.key === this.props.text) {
-  //     this.audio.current.play()
-  //   }
-  // }
+  playSound = () => {
+    this.audio.current.play()
+
+    const parent = this.audio.current.parentNode;
+    parent.classList.add('active');
+  }
 
   
   render() {
@@ -86,10 +91,6 @@ class Box extends React.Component {
      const parent = audio.parentNode;
      parent.classList.add('active');
      audio.play();
-
-     audio.addEventListener('ended', () => {
-       parent.classList.remove('active')
-     })
    }
  });
 

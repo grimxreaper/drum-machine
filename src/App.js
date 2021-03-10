@@ -49,19 +49,26 @@ const App = (props) => (
             <Box text={sound.key} key={index} audio={sound.mp3}/>
           ))}
         </div>
-      
-
-    );
+);
   
 // we have a box with some text in it coming from the props
 //converted to class based component to have state on it 
 class Box extends React.Component {
+  constructor(props) {
+    super(props);
+    this.audio = React.createRef();
+    }
+
+  playSound = () => {
+    this.audio.current.play()
+  }
+  
   render() {
     const { text, audio } = this.props; 
     return(
-        <div className="box">
+        <div className="box" onClick={this.playSound}>
           {text}
-          <audio src={audio} />
+          <audio ref={this.audio} src={audio} class="clip" id={text} />
         </div>
       )
   }

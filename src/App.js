@@ -7,8 +7,20 @@ class App extends Component {
     super(props)
     
     this.state = {
+      audio: "",
+      display: ""
 
     }
+  }
+
+  handleChange = (letter) => {
+    //do something here to play the audio
+    this.setState = {
+      audio: drum-pad.id.letter,
+      display: "letter"
+
+    }
+
   }
 
 

@@ -1,5 +1,5 @@
-import { Component } from "react";
-import react from React;
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
 
 class App extends Component {
@@ -7,6 +7,7 @@ class App extends Component {
     super(props)
     
     this.state = {
+      keys: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
       audio: "",
       display: ""
 
@@ -25,12 +26,21 @@ class App extends Component {
 
 
   render(){
+
+    const { keys } = this.state;
+
     return (
 
       <div
       id="drum-machine"
       >
         <div id="display">
+          {keys.map((key, index) => (
+            <Box text={key} key={index} />
+          ))}
+
+
+
           <div className="drum-pad" >
             <audio className="clip" id="Q" ref="" src="" />
           </div>
@@ -67,4 +77,11 @@ class App extends Component {
 
 }
 
+const Box = (props) => (
+  <div className="box">
+    {props.text}
+  </div>
+)
+
 export default App;
+ReactDOM.render(<App />, document.getElementById('app'));

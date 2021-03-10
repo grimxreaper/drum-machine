@@ -19,15 +19,33 @@ class App extends Component {
       id="drum-machine"
       >
         <div id="display">
-          <div id="Q" className="drum-pad" >Q</div>
-          <div id="W" className="drum-pad" >W</div>
-          <div id="E" className="drum-pad" >E</div>
-          <div id="A" className="drum-pad" >A</div>
-          <div id="S" className="drum-pad" >S</div>
-          <div id="D" className="drum-pad" >D</div>
-          <div id="Z" className="drum-pad" >Z</div>
-          <div id="X" className="drum-pad" >X</div>
-          <div id="C" className="drum-pad" >C</div>
+          <div className="drum-pad" >
+            <audio className="clip" id="Q" ref="" src="" />
+          </div>
+          <div id="W" className="drum-pad" >
+            <audio className="clip" id="W" ref="" src="" /> 
+          </div>
+          <div id="E" className="drum-pad" >
+            <audio className="clip" id="E" ref="" src="" />
+          </div>
+          <div id="A" className="drum-pad" >
+            <audio className="clip" id="A" ref="" src="" />
+          </div>
+          <div id="S" className="drum-pad" >
+            <audio className="clip" id="S" ref="" src="" />
+          </div>
+          <div id="D" className="drum-pad" >
+            <audio className="clip" id="D" ref="" src="" />
+          </div>
+          <div id="Z" className="drum-pad" >
+            <audio className="clip" id="Z" ref="" src="" />
+          </div>
+          <div id="X" className="drum-pad" >
+            <audio className="clip" id="X" ref="" src="" />
+          </div>
+          <div id="C" className="drum-pad" >
+            <audio className="clip" id="C" ref="" src="" />
+          </div>
 
         </div>
       </div>

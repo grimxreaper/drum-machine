@@ -44,14 +44,14 @@ const sounds = [
 const App = (props) => (
   <div class="display" id="display">
           {sounds.map((sound, index) => (
-            <Box text={sound.key} key={index} audio={sound.mp3}/>
+            <DrumPad text={sound.key} key={index} audio={sound.mp3}/>
           ))}
         </div>
 );
   
 // we have a box with some text in it coming from the props
 //converted to class based component to have state on it 
-class Box extends React.Component {
+class DrumPad extends React.Component {
   constructor(props) {
     super(props);
 
@@ -59,7 +59,7 @@ class Box extends React.Component {
     }
 
   componentDidMount() {
-    this.audio.current.addEventListener('ended', () => {
+    this.audio.current.addEventListener('ended', (e) => {
       const parent = this.audio.current.parentNode;
       parent.classList.remove('active');
     }) 
@@ -76,10 +76,12 @@ class Box extends React.Component {
   render() {
     const { text, audio } = this.props; 
     return(
-        <div className="box" onClick={this.playSound} >
+      <div id="drum-machine">
+        <div className="drum-pad" onClick={this.playSound} id={`drum-${text}`}>
           {text}
           <audio ref={this.audio} src={audio} class="clip" id={text} />
         </div>
+      </div>
       )
   }
  }
@@ -95,4 +97,4 @@ class Box extends React.Component {
  });
 
 export default App;
-ReactDOM.render(<App />, document.getElementById('drum-machine'));
+ReactDOM.render(<App />, document.getElementById('app'));

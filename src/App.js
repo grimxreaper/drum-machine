@@ -41,78 +41,68 @@ const sounds = [
   },
 ];
 
-const App = (props) => (
-  <div className="display" id="display">
+const App = () => (
+  <div id="display" className="display">
     <h1>Play a sound</h1>
-          {sounds.map((sound, index) => (
-            <DrumPad text={sound.key} key={index} audio={sound.mp3}/>
-          ))}
-        </div>
+    {sounds.map((sound, idx) => (
+      <DrumPad text={sound.key} key={idx} audio={sound.mp3} />
+    ))}
+  </div>
 );
-  
-// we have a box with some text in it coming from the props
-//converted to class based component to have state on it 
+
 class DrumPad extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.audio = React.createRef();
-    }
-
+  }
+  
   componentDidMount() {
     this.audio.current.addEventListener('ended', (e) => {
       const parent = e.target.parentNode;
       parent.classList.remove('active');
-    }) 
+    });
   }
-
+  
   playSound = () => {
     this.audio.current.play();
     
     const id = this.audio.current.id;
-
+    
     const parent = this.audio.current.parentNode;
     parent.classList.add('active');
-
-    const display = parent.parentNode; //the parent here is the drum-pad which is inside the display
+    
+    const display = parent.parentNode;
     display.querySelector('h1').innerText = `${id} is playing`;
   }
-
   
   render() {
-    const { text, audio } = this.props; 
-    return(
-      <div id="drum-machine">
-        <div className="drum-pad" onClick={this.playSound} id={`drum-${text}`}>
-          {text}
-          <audio ref={this.audio} src={audio} class="clip" id={text} />
-        </div>
+    const { text, audio } = this.props;
+    
+    return (
+      <div className="drum-pad" onClick={this.playSound} id={`drum-${text}`}>
+        {text}
+        <audio ref={this.audio} src={audio} className="clip" id={text} />
       </div>
-      )
+    )
   }
- }
+}
+    
+document.addEventListener('keydown', (e) => {
+  const id = e.key.toUpperCase();
+  const audio = document.getElementById(id);
+  
+  if(audio) {
+    audio.currentTime = 0;
+    const parent = audio.parentNode;
+    parent.classList.add('active');
+    
+    const display = parent.parentNode;
+    display.querySelector('h1').innerText = `${id} is playing`;
+    audio.play();
+  }
+});
 
- document.addEventListener('keydown', (e) => {
-   const id = e.key.toUpperCase();
-   const audio = document.getElementById(id);
-   if(audio) {
-     audio.currentTime = 0;
-     const parent = audio.parentNode;
-     parent.classList.add('active');
-
-     const display = parent.parentNode;
-     display.querySelector('h1').innerText = `${id} is playing`;
-     audio.play();
-     
-   }
- });
-
-
-//  if(document.getElementById("h1")){
-//   alert("Element exists");
-// } else {
-//   alert("Element does not exist");
-// }
 
 export default App;
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById("drum-machine"));

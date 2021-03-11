@@ -39,11 +39,11 @@ const sounds = [
     key: 'C',
     mp3: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3'
   },
-]
+];
 
 const App = (props) => (
-  <div class="display" id="display">
-    <h1>X is playing </h1>
+  <div className="display" id="display">
+    <h1>Play a sound</h1>
           {sounds.map((sound, index) => (
             <DrumPad text={sound.key} key={index} audio={sound.mp3}/>
           ))}
@@ -53,11 +53,9 @@ const App = (props) => (
 // we have a box with some text in it coming from the props
 //converted to class based component to have state on it 
 class DrumPad extends React.Component {
-  state = {
-    currentID: ''
-  }
   constructor(props) {
     super(props);
+
     this.audio = React.createRef();
     }
 
@@ -76,8 +74,8 @@ class DrumPad extends React.Component {
     const parent = this.audio.current.parentNode;
     parent.classList.add('active');
 
-    const display = parent.parent; //the parent here is the drum-pad which is inside the display
-    display.querySelector('h1').innerText = id;
+    const display = parent.parentNode; //the parent here is the drum-pad which is inside the display
+    display.querySelector('h1').innerText = `${id} is playing`;
   }
 
   
@@ -98,11 +96,23 @@ class DrumPad extends React.Component {
    const id = e.key.toUpperCase();
    const audio = document.getElementById(id);
    if(audio) {
+     audio.currentTime = 0;
      const parent = audio.parentNode;
      parent.classList.add('active');
+
+     const display = parent.parentNode;
+     display.querySelector('h1').innerText = `${id} is playing`;
      audio.play();
+     
    }
  });
+
+
+//  if(document.getElementById("h1")){
+//   alert("Element exists");
+// } else {
+//   alert("Element does not exist");
+// }
 
 export default App;
 ReactDOM.render(<App />, document.getElementById('app'));

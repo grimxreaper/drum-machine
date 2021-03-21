@@ -53,8 +53,8 @@ const App = () => (
 class DrumPad extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.audio = React.createRef();
+
+    this.audio = React.createRef(); //what is this actually creating a reference to?
   }
   
   componentDidMount() {
@@ -72,13 +72,13 @@ class DrumPad extends React.Component {
     const parent = this.audio.current.parentNode;
     parent.classList.add('active');
     
-    const display = parent.parentNode;
+    const display = parent.parentNode; //how is parent.parentNode targeting <div id="display"..?
     display.querySelector('h1').innerText = `${id} is playing`;
   }
   
   render() {
     const { text, audio } = this.props;
-    
+  
     return (
       <div className="drum-pad" onClick={this.playSound} id={`drum-${text}`}>
         {text}
@@ -89,7 +89,8 @@ class DrumPad extends React.Component {
 }
     
 document.addEventListener('keydown', (e) => {
-  const id = e.key.toUpperCase();
+  const id = e.key.toUpperCase(); //what exactly is 'key' here? it is the actual key, and 'e' is the keyboard event, right?
+  // console.log(e)
   const audio = document.getElementById(id);
   
   if(audio) {

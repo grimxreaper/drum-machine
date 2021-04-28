@@ -80,7 +80,7 @@ class DrumPad extends React.Component {
     const { text, audio } = this.props;
   
     return (
-      <div className="drum-pad" onClick={this.playSound} id={`drum-${text}`}>
+      <div data-testid={`drum-${text}`} className="drum-pad" onClick={this.playSound} id={`drum-${text}`}>
         {text}
         <audio ref={this.audio} src={audio} className="clip" id={text} />
       </div>

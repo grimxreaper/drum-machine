@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+  - 14.15.5
+
+
+before_install: 
+install:
+  - echo "install!"
+  - npm install
+
+
+
+script:
+  # - npm test
+  - npm run build
+  # - ls node_modules
+
+  
+  
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  local_dir: build
+  on:
+    branch: main
